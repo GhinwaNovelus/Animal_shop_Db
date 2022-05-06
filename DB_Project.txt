@@ -1,0 +1,49 @@
+CREATE TABLE Animals (
+AnimalSID int identity (1,1) Primary Key,
+AnimalTitle nvarchar(50) not null,
+AnimalBreed nvarchar(50) not null,
+AnimalDOB date,
+AnimalPrice float not null,
+AnimalDescription nvarchar(500)
+)
+
+insert into Animals (AnimalTitle,AnimalBreed,AnimalDOB,AnimalPrice,AnimalDescription)
+values ('Dog','Pomerenian','4/25/2021',725.5,'Friendly and cute dog');
+
+insert into Animals (AnimalTitle,AnimalBreed,AnimalDOB,AnimalPrice,AnimalDescription)
+values ('Dog','Bichon','3/15/2019',330,'Adorable dog');
+
+select * from Animals
+
+--------------------------------------------------------------
+
+CREATE TABLE Users (
+UserSID int identity (1,1) Primary Key,
+UserName nvarchar(250) not null,
+UserPassword nvarchar(250) not null,
+UserEmail nvarchar(250) not null,
+UserPhoneNumber int not null,
+UserAddress nvarchar(250) not null
+)
+
+insert into Users (UserName,UserPassword,UserEmail,UserPhoneNumber,UserAddress)
+values ('Admin','Admin123','ghinwarayess@gmail.com',76620523,'Ain Aar , Metn, Lebanon');
+
+
+select * from Users
+--------------------------------------------------------------
+
+CREATE TABLE Orders (
+OrderSID int identity (1,1) Primary Key,
+UserSID int not null,
+AnimalSID int not null,
+DateOfOrder date not null
+)
+
+Alter table Orders add constraint fk_UserSID foreign key (UserSID) references Users (UserSID)
+Alter table Orders add constraint fk_AnimalSID foreign key (AnimalSID) references Animals (AnimalSID)
+
+
+select * from Users
+Select * from Animals
+select * from Orders
